@@ -78,6 +78,23 @@
                             </execution>
                         </executions>
                     </plugin>
+					<!--自動化部署工具-->
+					<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>wagon-maven-plugin</artifactId>
+				<version>2.0.0</version>
+				<configuration>
+					<serverId>155</serverId>
+					<fromFile>target/apache-rocketmq.tar.gz</fromFile>
+					<url>scp://root@192.168.1.55/root/rocketmq</url>
+					<commands>
+						<command>sh /root/rocketmq/bin/myconfig.sh</command>
+					</commands>
+					<!-- 显示运行命令的输出结果 -->
+					<displayCommandOutputs>true</displayCommandOutputs>
+				</configuration>
+			</plugin>
+
                 </plugins>
                 <finalName>apache-rocketmq</finalName>
             </build>
