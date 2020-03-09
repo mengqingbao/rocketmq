@@ -20,38 +20,28 @@
     <parent>
         <groupId>org.apache.rocketmq</groupId>
         <artifactId>rocketmq-all</artifactId>
-        <version>4.2.0-SNAPSHOT</version>
+        <version>4.5.2</version>
     </parent>
     <artifactId>rocketmq-distribution</artifactId>
     <name>rocketmq-distribution ${project.version}</name>
     <packaging>pom</packaging>
 
     <profiles>
-
         <profile>
             <id>release-all</id>
-
             <dependencies>
                 <dependency>
                     <groupId>org.apache.rocketmq</groupId>
                     <artifactId>rocketmq-broker</artifactId>
                 </dependency>
-
                 <dependency>
                     <groupId>org.apache.rocketmq</groupId>
                     <artifactId>rocketmq-client</artifactId>
                 </dependency>
-
-                <dependency>
-                    <groupId>org.apache.rocketmq</groupId>
-                    <artifactId>rocketmq-filtersrv</artifactId>
-                </dependency>
-
                 <dependency>
                     <groupId>org.apache.rocketmq</groupId>
                     <artifactId>rocketmq-tools</artifactId>
                 </dependency>
-
                 <dependency>
                     <groupId>org.apache.rocketmq</groupId>
                     <artifactId>rocketmq-example</artifactId>
@@ -78,31 +68,13 @@
                             </execution>
                         </executions>
                     </plugin>
-					<!--自動化部署工具-->
-					<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>wagon-maven-plugin</artifactId>
-				<version>2.0.0</version>
-				<configuration>
-					<serverId>155</serverId>
-					<fromFile>target/apache-rocketmq.tar.gz</fromFile>
-					<url>scp://root@192.168.1.55/root/rocketmq</url>
-					<commands>
-						<command>sh /root/rocketmq/bin/myconfig.sh</command>
-					</commands>
-					<!-- 显示运行命令的输出结果 -->
-					<displayCommandOutputs>true</displayCommandOutputs>
-				</configuration>
-			</plugin>
-
                 </plugins>
-                <finalName>apache-rocketmq</finalName>
+                <finalName>rocketmq-${project.version}</finalName>
             </build>
         </profile>
 
         <profile>
             <id>release-client</id>
-
             <dependencies>
                 <dependency>
                     <groupId>org.apache.rocketmq</groupId>
@@ -132,7 +104,7 @@
                         </executions>
                     </plugin>
                 </plugins>
-                <finalName>apache-rocketmq</finalName>
+                <finalName>rocketmq-client-${project.version}</finalName>
             </build>
         </profile>
     </profiles>
